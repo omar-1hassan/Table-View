@@ -8,9 +8,11 @@
 import UIKit
 
 class ThirdVC: UIViewController {
+    
     //MARK: - Outlets
     @IBOutlet weak var fourthTVHightConstaint: NSLayoutConstraint!
     @IBOutlet weak var fourthTV: UITableView!
+    
     //MARK: - Variables
     var cellName = "FirstTVCell"
     var cellHight: CGFloat = 270 * iPhoneXFactor
@@ -22,26 +24,7 @@ class ThirdVC: UIViewController {
         initUI()
     }
 }
-//MARK: - Delegate Protocol
-extension ThirdVC: UITableViewDelegate{
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return cellHight
-    }
-    
-}
-//MARK: - Data Source Protocol
-extension ThirdVC: UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrProduct.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! FirstTVCell
-        let data = arrProduct[indexPath.row]
-        cell.setUpCell(photo: data.image, details: data.details, price: data.price)
-        return cell
-    }
-}
+
 extension ThirdVC{
     func initUI(){
         fourthTV.delegate = self
@@ -76,5 +59,28 @@ extension ThirdVC{
         arrProduct.append(Products(image: UIImage(named: "14")!, details: "Best Dad Forest Fantasy", price: "EGP 899"))
         arrProduct.append(Products(image: UIImage(named: "23")!, details: "Pink Sun Flower Vase", price: "EGP 20000"))
         arrProduct.append(Products(image: UIImage(named: "1")!, details: "PinK Heart Roses", price: "EGP 1,299"))
+    }
+}
+
+
+//MARK: - Delegate Protocol
+extension ThirdVC: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellHight
+    }
+    
+}
+
+//MARK: - Data Source Protocol
+extension ThirdVC: UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return arrProduct.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! FirstTVCell
+        let data = arrProduct[indexPath.row]
+        cell.setUpCell(photo: data.image, details: data.details, price: data.price)
+        return cell
     }
 }

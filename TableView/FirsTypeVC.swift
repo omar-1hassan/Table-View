@@ -8,8 +8,10 @@
 import UIKit
 
 class FirsTypeVC: UIViewController {
+    
     //MARK: - Outlets
     @IBOutlet weak var firstTV: UITableView!
+    
     //MARK: - Variables
     var cellName = "FirstTVCell"
     var cellHight = 280 * iPhoneXFactor
@@ -21,27 +23,6 @@ class FirsTypeVC: UIViewController {
         addProducts()
     }
 }
-//MARK: - Delegate
-extension FirsTypeVC: UITableViewDelegate{
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return cellHight
-    }
-    
-}
-//MARK: - Data Source
-extension FirsTypeVC: UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        arrOfProducts.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! FirstTVCell
-        let data = arrOfProducts[indexPath.row]
-        cell.setUpCell(photo: data.image, details: data.details, price: data.price)
-        return cell
-    }
-}
-
 extension FirsTypeVC{
     func initCell(){
         firstTV.delegate = self
@@ -76,3 +57,26 @@ extension FirsTypeVC{
         arrOfProducts.append(Products(image: UIImage(named: "1")!, details: "PinK Heart Roses", price: "EGP 1,299"))
     }
 }
+
+//MARK: - Delegate
+extension FirsTypeVC: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellHight
+    }
+    
+}
+
+//MARK: - Data Source
+extension FirsTypeVC: UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        arrOfProducts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! FirstTVCell
+        let data = arrOfProducts[indexPath.row]
+        cell.setUpCell(photo: data.image, details: data.details, price: data.price)
+        return cell
+    }
+}
+

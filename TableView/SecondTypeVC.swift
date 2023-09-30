@@ -8,34 +8,18 @@
 import UIKit
 
 class SecondTypeVC: UIViewController {
+    
     //MARK: - Outlets
     @IBOutlet weak var secondTypeTV: UITableView!
+    
     //MARK: - Variables
     var arrOfProducts: [Products] = []
     var cellName = "SecondTVCell"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
         addProducts()
-    }
-}
-//MARK: - Delegate Protocol
-extension SecondTypeVC: UITableViewDelegate{
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-}
-//MARK: - Data Source Protocol
-extension SecondTypeVC: UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrOfProducts.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! SecondTVCell
-        let data = arrOfProducts[indexPath.row]
-        cell.setUpCell(photo: data.image, details: data.details, price: data.price, description: data.description)
-        return cell
     }
 }
 extension SecondTypeVC{
@@ -75,5 +59,26 @@ extension SecondTypeVC{
         arrOfProducts.append(Products(image: UIImage(named: "14")!, details: "Best Dad Forest Fantasy", price: "EGP 899", description: "Their stems are usually prickly and their glossy, green leaves have toothed edges. Rose flowers vary in size and shape. They burst with colours ranging from pastel pink, peach, and cream, to vibrant yellow, orange, and red. Many roses are fragrant, and some produce berry-like fruits called hips."))
         arrOfProducts.append(Products(image: UIImage(named: "23")!, details: "Pink Sun Flower Vase", price: "EGP 20000", description: "A light rosy tone is often associated with femininity, so, naturally, the pink rose meaning is that of grace and sweetness. Other interpretations include gentleness, appreciation, joy, thankfulness, and elegance. The variety of meanings make giving pink roses appropriate for so many occasions."))
         arrOfProducts.append(Products(image: UIImage(named: "1")!, details: "PinK Heart Roses", price: "EGP 1,299", description: "To describe a beautiful flower, you can use the adjectives like aromatic, elegant, fragrant, pretty, radiant, ravishing, etc."))
+    }
+}
+
+//MARK: - Delegate Protocol
+extension SecondTypeVC: UITableViewDelegate{
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+}
+
+//MARK: - Data Source Protocol
+extension SecondTypeVC: UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return arrOfProducts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellName, for: indexPath) as! SecondTVCell
+        let data = arrOfProducts[indexPath.row]
+        cell.setUpCell(photo: data.image, details: data.details, price: data.price, description: data.description)
+        return cell
     }
 }
